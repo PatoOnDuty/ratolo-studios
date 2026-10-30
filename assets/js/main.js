@@ -11,7 +11,7 @@ const CONFIG = {
   email: 'hello@ratolostudios.com',
   location: 'Nairobi, Kenya',
   city: 'Nairobi, Kenya',
-  founded: '[Year]',
+  founded: '2030',
   instagram: 'ratolostudios',         // handle without @
   tiktok: 'ratolostudios',            // handle without @
   // Paste a Formspree (or similar) endpoint to receive enquiries by email,
@@ -47,11 +47,18 @@ const CONFIG = {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  /* ---------- Back to top ---------- */
+  $$('a[href="#top"]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }));
+
   /* ---------- Mobile menu ---------- */
   const toggle = $('.menu-toggle');
   const nav = $('#primary-nav');
   const setMenu = open => {
     nav.classList.toggle('is-open', open);
+    document.body.classList.toggle('menu-open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     if (open) $('a', nav).focus();
